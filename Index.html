@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Squid Game Runner</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #d32f2f;
+            color: white;
+        }
+        h1 {
+            font-size: 40px;
+        }
+        button {
+            font-size: 20px;
+            padding: 15px;
+            background-color: black;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: grey;
+        }
+    </style>
+</head>
+<body>
+    <h1>Squid Game Runner</h1>
+    <p>Corra quando for "Green Light" e pare quando for "Red Light"!</p>
+    <button onclick="startGame()">☠️ CLIQUE PARA JOGAR ☠️</button>
+
+    <script>
+        function startGame() {
+            window.location.href = "game.html";
+        }
+    </script>
+</body>
+</html>
