@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Squid Game Runner</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: sandybrown;
+        }
+        canvas {
+            border: 3px solid black;
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Squid Game Runner</h1>
+    <p><span id="status">Green Light! Corra!</span></p>
+    <canvas id="gameCanvas" width="500" height="300"></canvas>
+    <script>
+        let canvas = document.getElementById("gameCanvas");
+        let ctx = canvas.getContext("2d");
+
+        let player = {
+            x: 50,
+            y: 250,
+            width: 20,
+            height: 20,
+            speed: 5,
+            moving: false
+        };
+
+        let gameStatus = "green"; // Começa com "Green Light"
+
+        function drawPlayer() {
+            ctx.fillStyle = "blue";
+            ctx.fillRect(player.x, player.y, player.width, player.height);
+        }
+
+        function updateGame() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawPlayer();
+
+            if (player.moving && gameStatus === "green") {
+                player.x += player.speed;
+            }
+
+            if (player.x >= canvas.width - player.width) {
+                alert("Parabéns! Você venceu!");
+                resetGame();
+            }
+        }
+
+        function resetGame() {
+            player.x = 50;
+            gameStatus = "green";
+            document.getElementById("status").textContent = "Green Light! Corra!";
+        }
+
+        function changeLight() {
+            if (gameStatus === "green") {
+                gameStatus = "red";
+                document.getElementById("status").textContent = "Red Light! Pare!";
+            } else {
+                gameStatus = "green";
+                document.getElementById("status").textContent = "Green Light! Corra!";
+            }
+        }
+
+        document.addEventListener("keydown", function(event) {
+            if (event.code === "ArrowRight") {
+                player.moving = true;
+            }
+        });
+
+        document.addEventListener("keyup", function(event) {
+            if (event.code === "ArrowRight") {
+                player.moving = false;
+            }
+        });
+
+        setInterval(updateGame, 50);
+        setInterval(changeLight, 5000);
+    </script>
+</body>
+</html>
